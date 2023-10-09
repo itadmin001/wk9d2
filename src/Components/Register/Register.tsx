@@ -8,8 +8,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 
 import { NavBar } from '../SharedComponents';
 import { InputText, InputPassword } from '../SharedComponents/Inputs'
-
-export type AlertMessageType = 'success' | 'info' | 'warning' | 'error'
+import { AlertMessageType } from '../Auth';
 
 interface SubmitProps{
     email:string

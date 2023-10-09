@@ -1,23 +1,23 @@
-import * as React  from 'react'; 
-import { useState }  from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { getDatabase, ref, push } from 'firebase/database'; 
-import {Box,Button,Dialog,DialogContent,DialogContentText,Stack,Typography,Snackbar,Alert} from '@mui/material';
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import InfoIcon from '@mui/icons-material/Info';
+import * as React  from 'react' 
+import { useState }  from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { getDatabase, ref, push } from 'firebase/database' 
+import {Box,Button,Dialog,DialogContent,DialogContentText,Stack,Typography,Snackbar,Alert} from '@mui/material'
+import Grid from "@mui/material/Grid"
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import CardMedia from "@mui/material/CardMedia"
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-import { NavBar } from '../SharedComponents';
-import {  theme } from '../../Theme/themes';
-import { useGetShop, ShopState } from '../../hooks';
-import { InputText } from '../SharedComponents';
-import { AlertMessageType } from '../Auth';
+import { NavBar } from '../SharedComponents'
+import {  theme } from '../../Theme/themes'
+import { useGetShop, ShopState } from '../../hooks'
+import { InputText } from '../SharedComponents'
+import { AlertMessageType } from '../Auth'
 
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';   
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'   
 
 
 export interface SubmitState {
@@ -84,7 +84,7 @@ export const shopStyles = {
 
 
 const AddToCart = (cart: CartProps) => {
-    const db = getDatabase(); 
+    const db = getDatabase() 
     const { register, handleSubmit } = useForm<SubmitState>({})
     const [ open, setOpen ] = useState(false)
     const [ message, setMessage ] = useState<string>()
@@ -92,7 +92,7 @@ const AddToCart = (cart: CartProps) => {
 
 
     const onSubmit: SubmitHandler<SubmitState> = async (data, event) => {
-        if (event) event.preventDefault(); 
+        if (event) event.preventDefault() 
 
         const userId = localStorage.getItem('token')
         const cartRef = ref(db, `carts/${userId}/`)
@@ -118,14 +118,14 @@ const AddToCart = (cart: CartProps) => {
             setMessage(error.message)
             setMessageType('error')
             setOpen(true)
-        });
+        })
     }
 
     return (
         <Box>
             <form onSubmit = {handleSubmit(onSubmit)}>
                 <Box>
-                    <label htmlFor='quantity'>Adding quantity for {cart.cartItem.name} </label>
+                    <label htmlFor='quantity'>{cart.cartItem.name} </label>
                     <InputText {...register('quantity')} name='quantity' placeholder='How many?' />
                 </Box>
                 <Button type='submit'>Submit</Button>
@@ -145,9 +145,9 @@ const AddToCart = (cart: CartProps) => {
 }
 
 export const Shop = () => {
-    const { shopData, getData } = useGetShop(); 
-    const [ currentShop, setCurrentShop ] = useState<ShopState>();
-    const [ cartOpen, setCartOpen ] = useState(false);
+    const { shopData, getData } = useGetShop() 
+    const [ currentShop, setCurrentShop ] = useState<ShopState>()
+    const [ cartOpen, setCartOpen ] = useState(false)
 
 
     console.log(shopData)
@@ -175,25 +175,20 @@ export const Shop = () => {
                                     <Stack direction = 'row' alignItems='center' justifyContent='space-between'>
                                         <Accordion sx={{ color: 'white', backgroundColor: theme.palette.secondary.light }}>
                                             <AccordionSummary
-                                                expandIcon={<InfoIcon sx={{color: theme.palette.primary.main }} />}
+                                                sx={{backgroundColor:theme.palette.secondary.dark,fontWeight:'bold'}}
+                                                expandIcon={<ExpandMoreIcon sx={{color:'#fff' }} />}
                                                 aria-controls='panel1a-content'
-                                                id='panel1-header'
-                                            >
+                                                id='panel1-header'>
                                             <Typography>{shop.name}</Typography>
                                             </AccordionSummary>
-                                            <AccordionDetails>
+                                            <AccordionDetails sx={{backgroundColor:theme.palette.secondary.dark}}>
                                                 <Typography>
                                                     {shop.description}
                                                 </Typography>
                                             </AccordionDetails> 
                                         </Accordion>
                                     </Stack>
-                                    <Button
-                                        size='medium'
-                                        variant='outlined'
-                                        onClick = {()=>{setCurrentShop(shop); setCartOpen(true)}}
-                                        sx={shopStyles.button}
-                                    >
+                                    <Button size='medium' variant='outlined' onClick = {()=>{setCurrentShop(shop); setCartOpen(true)}} sx={shopStyles.button}>
                                         Add to Cart - ${parseFloat(shop.price).toFixed(2)}
                                     </Button>
                                 </Stack>

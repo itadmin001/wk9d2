@@ -18,6 +18,7 @@ import {
 import { useNavigate } from 'react-router-dom'; 
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -162,6 +163,11 @@ export const NavBar = () => {
             text: 'Shop',
             icon: <ShoppingBagIcon />,
             onClick: () => {navigate('/shop')}
+        },
+        {
+            text: 'Cart',
+            icon: <ShoppingCartIcon />,
+            onClick: () => {navigate('/cart')}
         },
     ]
 

@@ -35,3 +35,28 @@ export const useGetShop = (): UseGetShopData => {
     return { shopData, getData: handleDataFetch }
 
 }
+
+
+interface UseGetOrderData {
+    orderData: ShopState[]
+    getData: () => void 
+}
+
+export const useGetOrder = (): UseGetOrderData => {
+    const [orderData, setData] = useState<ShopState[]>([])
+
+    async function handleDataFetch(){
+        const result = await ApiCalls.getOrder() //this is making our api call
+        console.log(result)
+        setData(result)
+    }
+
+    //useEffect takes in 2 arguments, 1 is the function to run, the other is the dependency its monitoring
+    useEffect( () => {
+        handleDataFetch()
+    }, []) //whatever its monitoring goes in this list 
+
+
+    return { orderData, getData: handleDataFetch }
+
+}

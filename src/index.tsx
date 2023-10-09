@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { FirebaseAppProvider } from 'reactfire'
 import 'firebase/auth'
 import { initializeApp } from 'firebase/app'
-import { Home, Auth, Properties, Register,Shop } from './Components'; 
+import { Home, Auth, Properties, Register,Shop,Cart } from './Components'; 
 import './index.css'
 import {theme} from './Theme/themes'
 import {firebaseConfig} from '../firebaseConfig'
@@ -21,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         <Route path='/properties' element = {<Properties/>} />
                         <Route path='/register' element = {<Register/>} />
                         <Route path='/shop' element={<Shop/>} />
+                        <Route path='/cart' element={<Cart/>} />
                     </Routes>
                 </Router>
             </ThemeProvider>
