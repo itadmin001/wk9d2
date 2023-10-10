@@ -9,6 +9,7 @@ import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { NavBar } from '../SharedComponents';
 import { InputText, InputPassword } from '../SharedComponents/Inputs'
 import { AlertMessageType } from '../Auth';
+import googleButton from '../../assets/Images/sign-in-with-google-icon-3.jpg'
 
 interface SubmitProps{
     email:string
@@ -59,7 +60,7 @@ const GoogleButton = (props:ButtonProps) => {
 
     return(
         <Box>
-            <Button variant='contained' color='info' size='large' onClick={login}>Google Sign in</Button>
+            <Button variant='contained' color='info' size='medium' sx={{marginBottom:'15px'}} onClick={login}><img src={googleButton} alt="" width="250px"/></Button>
             <Snackbar open={open} autoHideDuration={2000} onClose={()=>setMessageOpen(false)}>
                 <Alert severity={messageType}>{message}</Alert>
             </Snackbar>
@@ -205,12 +206,12 @@ export const Register = ()=>{
         <Box>
             <NavBar />
             <Box>
-                <Stack direction = 'column' alignItems = 'center' textAlign = 'center' marginTop='100px'>
+                <Stack direction = 'column' alignItems = 'center' textAlign = 'center' marginTop='100px' sx={{backgroundColor:'#faf9f6'}}>
                     <GoogleButton open = {open} onClick = {handleSnackClose} />
                     <Divider/>
                     <Stack>
-                        <Button>Email Login In</Button>
-                        <Button onClick = {()=>{setOpen(true); setSignType('signup')}}>
+                    <Button variant='contained' color='info' size='medium' sx={{marginBottom:'15px',width:'282px',color:'#fff',fontWeight:'bold'}}>Email Login In</Button>
+                        <Button variant='contained' color='info' size='medium' sx={{color:'#fff',fontWeight:'bold'}} onClick = {()=>{setOpen(true); setSignType('signup')}}>
                                 Email Sign Up
                             </Button>
                     </Stack>

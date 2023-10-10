@@ -10,13 +10,11 @@ import { SubmitState } from '../Shop'
 import { ApiCalls } from '../../api'
 import { InputText } from '../SharedComponents/Inputs'
 import { useGetOrder } from '../../hooks'
-import { theme } from '../../Theme/themes';
 
 interface UpdateState {
     id: string,
     orderData: ShopState[]
 }
-
 
 const columns: GridColDef[] = [
     { field: 'image',
@@ -132,7 +130,6 @@ const UpdateQuantity = (props: UpdateState) => {
     )
 }
 
-
 export const Order = () => {
     const { orderData } = useGetOrder();
     const [ open, setOpen ] = useState(false);
@@ -142,7 +139,6 @@ export const Order = () => {
     const [ messageType, setMessageType ] = useState<AlertMessageType>()
 
     const deleteItem = async () => {
-
         const id = `${gridData[0]}`
 
         let order_id = ""
@@ -178,7 +174,6 @@ export const Order = () => {
             setMessageType('error')
             setAlertOpen(true)
         }
-        
     }
 
     return (
@@ -197,8 +192,7 @@ export const Order = () => {
             pageSizeOptions={[5]}
             checkboxSelection
             getRowId = {(row) => row.id}
-            onRowSelectionModelChange = {(newSelectionModel) => setGridData(newSelectionModel)}
-        />
+            onRowSelectionModelChange = {(newSelectionModel) => setGridData(newSelectionModel)}/>
         <Button variant='contained' color='info' onClick={()=>{setOpen(true)}}>Update</Button>
         <Button variant='contained' color='warning' onClick={deleteItem}>Delete</Button>
         <Dialog open={open} onClose={()=>{setOpen(false)}} aria-labelledby='form-dialog-title'>
@@ -211,14 +205,8 @@ export const Order = () => {
                     <Button onClick={()=>{setOpen(false)}} color='error'>Cancel</Button>
                 </DialogActions>
             </Dialog>
-            <Snackbar
-                open={openAlert}
-                autoHideDuration={3000}
-                onClose={()=> setAlertOpen(false)}
-            >
-                <Alert severity = {messageType}>
-                    {message}
-                </Alert>
+            <Snackbar open={openAlert} autoHideDuration={3000} onClose={()=> setAlertOpen(false)}>
+                <Alert severity = {messageType}>{message}</Alert>
             </Snackbar>
         </Box>
     );

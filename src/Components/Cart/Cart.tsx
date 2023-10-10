@@ -11,6 +11,7 @@ import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import InfoIcon from '@mui/icons-material/Info';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 import { theme } from '../../Theme/themes'
 import { ShopState } from "../../hooks"
@@ -27,7 +28,6 @@ export interface CreateState{
 }
 
 export const Cart = () =>{
-    
     const userId = localStorage.getItem('token')
     const db = getDatabase()
     const cartRef = ref(db, `carts/${userId}/`)
@@ -41,7 +41,6 @@ export const Cart = () =>{
 
         onValue(cartRef, (snapshot) =>{
             const data = snapshot.val()
-
             let cartList = []
 
             if (data){
@@ -161,20 +160,13 @@ export const Cart = () =>{
                 <Grid container spacing={3} sx={shopStyles.grid}>
                     {currentCart.map((shop: ShopState, index: number) => (
                         <Grid item key={index} xs={12} md={6} lg={4}>
-                            <Card
-                                sx={shopStyles.card}
-                            >
-                            <CardMedia
-                                component='img'
-                                sx={shopStyles.cardMedia}
-                                image={shop.image}
-                                alt={shop.name}
-                            />
+                            <Card sx={shopStyles.card}>
+                            <CardMedia component='img' sx={shopStyles.cardMedia} image={shop.image} alt={shop.name}/>
                             <CardContent>
                                 <Stack direction = 'column' justifyContent='space-between' alignItems='center'>
-                                    <Accordion sx={{color: 'white', backgroundColor: theme.palette.secondary.light }}>
+                                    <Accordion sx={{color: 'white', backgroundColor: theme.palette.secondary.dark }}>
                                         <AccordionSummary
-                                            expandIcon={<InfoIcon sx={{color: theme.palette.primary.main}} />}
+                                            expandIcon={<ExpandMoreIcon sx={{color:'#fff'}} />}
                                             aria-controls="panel1a-content"
                                             id="panel1a-header"
                                         >
@@ -190,7 +182,7 @@ export const Cart = () =>{
                                             variant='text'
                                             onClick={()=>{updateQuantity(shop.id, 'dec')}}
                                         >-</Button>
-                                        <Typography variant = 'h6' sx={{color: 'white'}}>
+                                        <Typography variant = 'h6' sx={{color:theme.palette.primary.main}}>
                                             {shop.quantity}
                                         </Typography>
                                         <Button
@@ -211,10 +203,7 @@ export const Cart = () =>{
                                         size='medium'
                                         variant='outlined'
                                         onClick={()=>{deleteItem(shop)}}
-                                        sx={shopStyles.button}
-                                    >
-                                        Delete Item
-                                    </Button>
+                                        sx={shopStyles.button}>Delete Item</Button>
                                 </Stack>
                             </CardContent>
                             </Card>
@@ -222,23 +211,15 @@ export const Cart = () =>{
                     ))}
                 </Grid>
                 <Stack direction = 'column' sx={{width: '75%', marginLeft: 'auto', marginRight: 'auto'}}>
-                <Typography 
-                    variant = 'h4'
-                    sx = {{ marginTop: '100px', marginBottom: '100px'}}
-                    >
-                    Your Orders
-                </Typography>
+                <Typography variant = 'h4' sx = {{ marginTop: '100px', marginBottom: '100px'}}>Orders</Typography>
                 <Order />
                 </Stack>
             </Stack>
             <Snackbar
                 open={openAlert}
                 autoHideDuration={3000}
-                onClose={()=> setAlertOpen(false)}
-            >
-                <Alert severity = {messageType}>
-                    {message}
-                </Alert>
+                onClose={()=> setAlertOpen(false)}>
+                <Alert severity = {messageType}>{message}</Alert>
             </Snackbar>
         </Box>
     )

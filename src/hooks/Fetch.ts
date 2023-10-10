@@ -30,12 +30,8 @@ export const useGetShop = (): UseGetShopData => {
     useEffect( () => {
         handleDataFetch()
     }, [])
-
-
     return { shopData, getData: handleDataFetch }
-
 }
-
 
 interface UseGetOrderData {
     orderData: ShopState[]
@@ -51,12 +47,8 @@ export const useGetOrder = (): UseGetOrderData => {
         setData(result)
     }
 
-    //useEffect takes in 2 arguments, 1 is the function to run, the other is the dependency its monitoring
     useEffect( () => {
         handleDataFetch()
-    }, []) //whatever its monitoring goes in this list 
-
-
+    }, [])
     return { orderData, getData: handleDataFetch }
-
 }

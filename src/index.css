@@ -4,8 +4,142 @@
     box-sizing: inherit;
 }
 
+body,html{
+    background-color:#faf9f6 ;
+}
+.main-title{
+    font-size: 2.5em;
+    margin-top:30px
+}
 #signInDiv{
     display:flex;
     justify-content: center;
     margin-top:100px;
+}
+
+.card-section{
+    margin-top:400px;
+}
+
+.card::after {
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 35px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 19px 28px 5px rgba(64,64,64,0.09);
+    box-shadow: 0 19px 28px 5px rgba(64,64,64,0.09);
+    content: '';
+    z-index: -1;
+}
+.card {
+    text-decoration: none;
+    color:#42A5F5 !important
+}
+
+.card {
+    position: relative;
+    border: 0;
+    border-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09);
+    box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09);
+    min-height:340px
+}
+
+.learn-more{
+    position:absolute;
+    bottom:5%;
+    left:50%;
+    transform:translate(-50%, -50%)
+    
+}
+
+.home-card-div{
+    width:90px;
+    height:90px;
+    margin-top:-45px;
+}
+.home-card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: .25rem;
+}
+
+.box-shadow {
+    -webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09) !important;
+    box-shadow: 0px 10px 8px #999 !important;
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto !important;
+}
+.mr-auto, .mx-auto {
+    margin-right: auto !important;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+    box-shadow: 0px 10px 8px #999 !important;
+}
+.bg-white {
+    background-color: #fff !important;
+}
+
+.ml-auto, .mx-auto {
+    margin-left: auto !important;
+}
+
+.mr-auto, .mx-auto {
+    margin-right: auto !important;
+}
+.d-block {
+    display: block !important;
+}
+img, figure {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+.spacer{
+    height:30px
+}
+.card-text {
+    padding-top: 12px;
+    color: #42A5F5 !important;
+}
+
+.text-sm {
+    font-size: 15px !important;
+}
+p, .p {
+    margin: 0 0 16px;
+}
+
+.home-card-title {
+    margin: 0;
+    font-family: "Montserrat",sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.pt-1, .py-1 {
+    padding-top: .25rem !important;
+}
+
+.head-icon, .bi, .i{
+    margin-top:18px;
+    color:#FF4500 !important;
 }

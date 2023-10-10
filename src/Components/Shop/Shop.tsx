@@ -89,8 +89,7 @@ const AddToCart = (cart: CartProps) => {
     const [ open, setOpen ] = useState(false)
     const [ message, setMessage ] = useState<string>()
     const [ messageType, setMessageType ] = useState<AlertMessageType>()
-
-
+    
     const onSubmit: SubmitHandler<SubmitState> = async (data, event) => {
         if (event) event.preventDefault() 
 
@@ -105,8 +104,7 @@ const AddToCart = (cart: CartProps) => {
 
         push(cartRef, myCart)
         .then((newCartRef) => {
-            console.log("Cart item added with key: " + newCartRef.key)
-            setMessage(`Successfully added item ${myCart.name} to Cart`)
+            setMessage(`Added ${myCart.name} to Cart`)
             setMessageType('success')
             setOpen(true)
         })
@@ -154,22 +152,12 @@ export const Shop = () => {
     return (
         <Box sx={shopStyles.main} >
             <NavBar />
-            <Typography
-                variant='h4'
-                sx={shopStyles.typography}
-            >
-                The Shop
-            </Typography>
+            <Typography variant='h4' sx={{color:'#000',marginTop:'100px',textAlign:'center',fontWeight:'bold'}}>Shop</Typography>
             <Grid container spacing={3} sx={shopStyles.grid}>
                 {shopData.map((shop: ShopState, index: number) => (
                     <Grid item key={index} xs={12} md={6} lg={4}>
                         <Card sx={shopStyles.card}>
-                            <CardMedia
-                                component='img'
-                                sx={shopStyles.cardMedia}
-                                image={shop.image}
-                                alt={shop.name}
-                            />
+                            <CardMedia component='img' sx={shopStyles.cardMedia} image={shop.image} alt={shop.name}/>
                             <CardContent>
                                 <Stack direction = 'column' justifyContent='space-between' alignItems='center'>
                                     <Stack direction = 'row' alignItems='center' justifyContent='space-between'>
